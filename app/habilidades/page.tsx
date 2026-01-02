@@ -35,7 +35,7 @@ const SKILLS_DATA = [
     stage: 5,
     title: 'GenAI & Agentic Systems',
     description: 'Orquestación de flujos end-to-end con LLMs, herramientas y memoria.',
-    skills: ['n8n (Orquestación)', 'LangChain', 'RAG', 'Prompt Engineering', 'Supabase', 'Vector DBs'],
+    skills: ['n8n (Orquestación)', 'LangChain', 'RAG', 'Context Engineering', 'MCP', 'Prompt Engineering', 'Supabase', 'Vector DBs'],
   },
 ]
 
