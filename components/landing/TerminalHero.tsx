@@ -4,13 +4,6 @@ import Link from 'next/link'
 import { SITE_CONFIG } from '@/lib/constants'
 import Keypad3D from './Keypad3D'
 
-const SKILLS = [
-  { name: 'n8n', level: 95 },
-  { name: 'LangChain', level: 90 },
-  { name: 'RAG', level: 88 },
-  { name: 'Python', level: 92 },
-]
-
 const SOCIAL_LINKS = [
   {
     href: SITE_CONFIG.linkedin,
@@ -53,10 +46,10 @@ export function TerminalHero() {
       <div className="relative z-10 px-6 md:px-12 lg:px-16 py-12 pb-32">
         <div className="max-w-6xl mx-auto">
           {/* Main grid: Info | Keypad */}
-          <div className="grid lg:grid-cols-[1fr_280px] gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1fr_200px] gap-8 lg:gap-12 items-center">
 
             {/* Left - Info */}
-            <div className="space-y-8 order-2 lg:order-1">
+            <div className="space-y-6 order-2 lg:order-1">
               {/* Label */}
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white/60 text-xs font-medium tracking-widest uppercase">
                 <span className="w-1.5 h-1.5 bg-white/60 rounded-full animate-pulse" />
@@ -72,31 +65,24 @@ export function TerminalHero() {
                 </h1>
               </div>
 
-              {/* Description */}
-              <p className="text-sm text-white/60 max-w-md leading-relaxed">
-                Diseño y construyo <span className="text-white bg-white/10 px-2 py-0.5 rounded">sistemas autónomos</span> con IA.
-                Especializado en automatización y agentes inteligentes.
-              </p>
-
-              {/* Skills - Clean bars */}
-              <div className="space-y-3">
-                <div className="text-[10px] text-white/40 uppercase tracking-[0.2em] mb-4">Tech Stack</div>
-                {SKILLS.map((skill) => (
-                  <div key={skill.name} className="flex items-center gap-4">
-                    <span className="text-xs text-white/70 w-20 font-medium">{skill.name}</span>
-                    <div className="flex-1 h-[2px] bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#444] via-[#666] to-[#888] rounded-full"
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                    <span className="text-xs text-white/50 font-medium w-8 text-right">{skill.level}</span>
-                  </div>
-                ))}
+              {/* Narrative Description */}
+              <div className="space-y-4 max-w-xl">
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Mi recorrido académico en Ciencias Económicas me enseñó que el valor está en modelar y medir para poder decidir. Trabajando en organizaciones gubernamentales —donde se administran grandes volúmenes de datos y decisiones de alto impacto presupuestario— entendí la necesidad de dominar herramientas y métodos sólidos.
+                </p>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Esa obsesión me llevó por BI, Analytics y Data Science.
+                </p>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Con el tiempo, mi vocación por innovar y construir me convirtió en <span className="text-white bg-white/10 px-2 py-0.5 rounded">AI Generative Engineer</span>: hoy diseño agentes que transforman insights en procesos automatizados.
+                </p>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Y con coding assistants, juego con ventaja: <span className="text-white/80 font-medium">delivery x10</span> con control y trazabilidad.
+                </p>
               </div>
 
               {/* Social Links */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-3 pt-2">
                 {SOCIAL_LINKS.map((link) => (
                   <Link
                     key={link.label}
@@ -112,8 +98,8 @@ export function TerminalHero() {
               </div>
             </div>
 
-            {/* Right - 3D Keypad (smaller) */}
-            <div className="flex items-center justify-center order-1 lg:order-2 scale-75 lg:scale-90">
+            {/* Right - 3D Keypad (smaller, grayscale, subtle) */}
+            <div className="flex items-center justify-center order-1 lg:order-2 scale-50 lg:scale-60 opacity-60 grayscale">
               <Keypad3D
                 onDeployClick={() => {}}
                 onBuildClick={() => {}}
