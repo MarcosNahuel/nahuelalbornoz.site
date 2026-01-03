@@ -161,24 +161,46 @@ export function TerminalHero() {
             </div>
 
             {/* Tech Stack */}
-            <div className="pt-4">
-              <div className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Tech Stack</div>
-              <div className="flex flex-wrap gap-2">
-                {TECH_STACK.map((tech, index) => (
-                  <motion.div
-                    key={tech.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 * index, duration: 0.3 }}
-                    className="group flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg hover:border-white/30 hover:bg-white/10 transition-all duration-200 cursor-default"
-                    style={{ ['--tech-color' as string]: tech.color }}
-                  >
-                    <span className="text-white/40 group-hover:text-white/70 transition-all group-hover:scale-110">
-                      {tech.icon}
-                    </span>
-                    <span className="text-xs text-white/60 group-hover:text-white/90 transition-colors">{tech.name}</span>
-                  </motion.div>
-                ))}
+            <div className="pt-4 space-y-4">
+              {/* Row 1: Data & BI */}
+              <div>
+                <div className="text-[10px] text-white/40 uppercase tracking-widest mb-2">Data & BI</div>
+                <div className="flex flex-wrap gap-2">
+                  {TECH_STACK.slice(0, 3).map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.1 * index, duration: 0.3 }}
+                      className="group flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg hover:border-white/30 hover:bg-white/10 transition-all duration-200 cursor-default"
+                    >
+                      <span className="text-white/40 group-hover:text-white/70 transition-all group-hover:scale-110">
+                        {tech.icon}
+                      </span>
+                      <span className="text-xs text-white/60 group-hover:text-white/90 transition-colors">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+              {/* Row 2: AI & Automation */}
+              <div>
+                <div className="text-[10px] text-white/40 uppercase tracking-widest mb-2">AI & Automation</div>
+                <div className="flex flex-wrap gap-2">
+                  {TECH_STACK.slice(3).map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.1 * (index + 3), duration: 0.3 }}
+                      className="group flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg hover:border-white/30 hover:bg-white/10 transition-all duration-200 cursor-default"
+                    >
+                      <span className="text-white/40 group-hover:text-white/70 transition-all group-hover:scale-110">
+                        {tech.icon}
+                      </span>
+                      <span className="text-xs text-white/60 group-hover:text-white/90 transition-colors">{tech.name}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
 

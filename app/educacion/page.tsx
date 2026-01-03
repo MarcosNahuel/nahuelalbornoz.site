@@ -1,10 +1,9 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { BottomNav } from '@/components/layout/BottomNav'
 import { WhatsAppWidget } from '@/components/widgets/WhatsAppWidget'
-
-export const metadata = {
-  title: 'Educación',
-  description: 'De economía y gestión a Data/BI, y luego a IA generativa y agentes.',
-}
 
 const EDUCATION = {
   formal: [
@@ -42,6 +41,78 @@ const EDUCATION = {
   ],
 }
 
+interface CollapsibleSectionProps {
+  etapa: string
+  title: string
+  description?: string
+  items: { date: string; title: string; institution: string }[]
+  defaultOpen?: boolean
+  accentColor: string
+}
+
+function CollapsibleSection({ etapa, title, description, items, defaultOpen = false, accentColor }: CollapsibleSectionProps) {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+
+  return (
+    <section className="mb-6">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-xl hover:border-white/20 transition-all group"
+      >
+        <div className="flex items-center gap-3">
+          <span className={`px-3 py-1 ${accentColor} rounded text-[10px] font-medium text-white uppercase tracking-wider`}>
+            {etapa}
+          </span>
+          <h2 className="text-lg font-bold text-white">{title}</h2>
+          <span className="text-xs text-white/40">({items.length})</span>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          className="w-6 h-6 flex items-center justify-center text-white/40 group-hover:text-white/60"
+        >
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </motion.div>
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 pl-4 space-y-3">
+              {description && (
+                <p className="text-white/40 text-xs mb-4">{description}</p>
+              )}
+              {items.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.03 }}
+                  className="flex gap-4 p-4 bg-white/[0.03] border border-white/5 rounded-xl hover:bg-white/[0.05] transition-colors"
+                >
+                  <span className="text-xs text-white/40 w-24 flex-shrink-0">{item.date}</span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
+                    <p className="text-xs text-white/50 mt-1">{item.institution}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}
+
 export default function EducacionPage() {
   return (
     <main className="bg-[#0a0a0a] min-h-screen pb-28">
@@ -67,70 +138,32 @@ export default function EducacionPage() {
             </p>
           </div>
 
-          {/* Etapa 1: Formal */}
-          <section className="mb-10">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-medium text-white/60 uppercase tracking-wider">
-                Etapa 1
-              </span>
-              <h2 className="text-xl font-bold text-white">Educación Formal</h2>
-            </div>
-            <div className="space-y-4">
-              {EDUCATION.formal.map((item, idx) => (
-                <div key={idx} className="flex gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
-                  <span className="text-xs text-white/40 w-24 flex-shrink-0">{item.date}</span>
-                  <div>
-                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="text-xs text-white/50 mt-1">{item.institution}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Collapsible Sections */}
+          <CollapsibleSection
+            etapa="Etapa 1"
+            title="Educación Formal"
+            items={EDUCATION.formal}
+            defaultOpen={true}
+            accentColor="bg-blue-500/20 border border-blue-500/30"
+          />
 
-          {/* Etapa 2: Data & BI */}
-          <section className="mb-10">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-medium text-white/60 uppercase tracking-wider">
-                Etapa 2
-              </span>
-              <h2 className="text-xl font-bold text-white">Data & BI</h2>
-            </div>
-            <p className="text-white/40 text-xs mb-4">Excel, Python, SQL, Power BI, Looker Studio y herramientas de análisis de datos.</p>
-            <div className="space-y-3">
-              {EDUCATION.dataBI.map((item, idx) => (
-                <div key={idx} className="flex gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
-                  <span className="text-xs text-white/40 w-24 flex-shrink-0">{item.date}</span>
-                  <div>
-                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="text-xs text-white/50 mt-1">{item.institution}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <CollapsibleSection
+            etapa="Etapa 2"
+            title="Data & BI"
+            description="Excel, Python, SQL, Power BI, Looker Studio y herramientas de análisis de datos."
+            items={EDUCATION.dataBI}
+            defaultOpen={false}
+            accentColor="bg-amber-500/20 border border-amber-500/30"
+          />
 
-          {/* Etapa 3: Inteligencia Artificial */}
-          <section>
-            <div className="flex items-center gap-3 mb-6">
-              <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-medium text-white/60 uppercase tracking-wider">
-                Etapa 3
-              </span>
-              <h2 className="text-xl font-bold text-white">Inteligencia Artificial</h2>
-            </div>
-            <p className="text-white/40 text-xs mb-4">IA aplicada, LLMs, LangChain, n8n, automatización y agentes inteligentes.</p>
-            <div className="space-y-3">
-              {EDUCATION.ia.map((item, idx) => (
-                <div key={idx} className="flex gap-4 p-4 bg-white/5 border border-white/10 rounded-xl">
-                  <span className="text-xs text-white/40 w-24 flex-shrink-0">{item.date}</span>
-                  <div>
-                    <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                    <p className="text-xs text-white/50 mt-1">{item.institution}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <CollapsibleSection
+            etapa="Etapa 3"
+            title="Inteligencia Artificial"
+            description="IA aplicada, LLMs, LangChain, n8n, automatización y agentes inteligentes."
+            items={EDUCATION.ia}
+            defaultOpen={true}
+            accentColor="bg-emerald-500/20 border border-emerald-500/30"
+          />
         </div>
       </div>
 

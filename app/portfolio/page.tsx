@@ -124,14 +124,17 @@ export default function PortfolioPage() {
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-6">
             {PROJECTS.map((project) => (
-              <div
+              <Link
                 key={project.id}
-                className={`p-6 bg-gradient-to-br ${project.color} border border-white/10 rounded-xl hover:border-white/20 transition-all group`}
+                href="https://www.traidagency.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-6 bg-gradient-to-br ${project.color} border border-white/10 rounded-xl hover:border-white/30 hover:scale-[1.02] transition-all duration-300 group cursor-pointer block`}
               >
                 {/* Highlight Badge */}
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                    <h3 className="text-lg font-bold text-white group-hover:text-white/90">{project.title}</h3>
                     <p className="text-xs text-white/50">{project.subtitle}</p>
                   </div>
                   <div className="text-right">
@@ -158,7 +161,15 @@ export default function PortfolioPage() {
                     </span>
                   ))}
                 </div>
-              </div>
+
+                {/* View More indicator */}
+                <div className="mt-4 flex items-center gap-2 text-xs text-white/40 group-hover:text-white/60 transition-colors">
+                  <span>Ver más en TRAID Agency</span>
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </Link>
             ))}
           </div>
 
@@ -188,7 +199,7 @@ export default function PortfolioPage() {
             <p className="text-[10px] text-white/30 uppercase tracking-wider">
               Casos desarrollados por{' '}
               <Link
-                href="https://traid-seven.vercel.app"
+                href="https://www.traidagency.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/50 hover:text-white/70 transition-colors"
