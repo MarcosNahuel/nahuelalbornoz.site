@@ -49,7 +49,7 @@ export default function HabilidadesPage() {
         backgroundSize: '80px 80px'
       }} />
 
-      <div className="relative z-10 pt-16 pb-12 px-6 md:px-12">
+      <div className="relative z-10 pt-16 pb-12 pl-16 pr-6 md:px-12">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-10">

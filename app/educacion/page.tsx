@@ -122,7 +122,7 @@ export default function EducacionPage() {
         backgroundSize: '80px 80px'
       }} />
 
-      <div className="relative z-10 pt-16 pb-12 px-6 md:px-12">
+      <div className="relative z-10 pt-16 pb-12 pl-16 pr-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-10">

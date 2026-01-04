@@ -111,7 +111,7 @@ export function TerminalHero() {
         backgroundSize: '80px 80px'
       }} />
 
-      <div className="relative z-10 px-6 md:px-12 lg:px-16 py-12 pb-32">
+      <div className="relative z-10 pl-16 pr-6 md:px-12 lg:px-16 py-12 pb-32">
         <div className="max-w-6xl mx-auto">
           {/* Main grid: Info | Keypad */}
           <div className="grid lg:grid-cols-[1fr_200px] gap-8 lg:gap-12 items-center">

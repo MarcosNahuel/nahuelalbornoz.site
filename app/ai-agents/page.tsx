@@ -15,7 +15,7 @@ export default function AIAgentsPage() {
       <VantaBackground />
       <BackButton />
 
-      <main className="relative min-h-screen pt-20 pb-12 px-4">
+      <main className="relative min-h-screen pt-20 pb-12 pl-16 pr-4 md:px-12">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-display text-gradient mb-6">
             AI Agents
